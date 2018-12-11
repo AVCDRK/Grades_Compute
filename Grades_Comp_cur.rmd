@@ -18,18 +18,20 @@ alldata <- read.csv(file = "2018-12-07T1451_Grades-2018-70837-MATH115.csv")
 # Use dplyr to cut up the data
 
 ```{r}
+#canvas puts summary crap in download that ends in .Points and .Score so it gets removed with select(-ends_with) 
 Dcamp <- select(alldata,Student,contains("DataCamp.")) %>% select(-ends_with(".Points"))%>% select(-ends_with(".Score"))
 ```
 
 
 
 ```{r}
+#canvas has row 1 as points possible so you need to pick the second highest point to get the highest student score
 require(purrr)
-summary(Dcamp)
+#summary(Dcamp)
 Dcamp[is.na(Dcamp)] <- 0
 #now sum rows
 Dcamp$Dcamp_sum <-rowSums(Dcamp[,2:ncol(Dcamp)]) 
-(Dcamp)
+#(Dcamp)
 Dcamp$DcampNorm <- Dcamp$Dcamp_sum/sort(Dcamp$Dcamp_sum,decreasing = TRUE)[[2]]
 ``` 
 
@@ -48,6 +50,7 @@ Gitdat$Git_sum <-rowSums(Gitdat[,2:ncol(Gitdat)])
 Gitdat$GitNorm <- Gitdat$Git_sum/sort(Gitdat$Git_sum,decreasing = TRUE)[[2]]
 ```
 ```{r}
+#had to pick the appropriate columns -- next time put appropriate name in canvas assignment name and retrieve with select command
 writeup <- alldata[,c(1,14,19,21,22,25,26,27,41,49,50,51)]
 writeup[is.na(writeup)] <- 0
 writeup$Writeup_sum <-rowSums(writeup[,2:ncol(writeup)])
