@@ -11,7 +11,7 @@ output:
 ```{r include=FALSE,echo=FALSE}
 require(tidyverse)
 require(tigerstats)
-alldata <- read.csv(file = "Grades-2019-37305-MATH115.csv")
+alldata <- read.csv(file = "Grades-2019-73452-MATH115.csv")
 #names(alldata)
 ```
 
@@ -30,7 +30,7 @@ require(purrr)
 #summary(Dcamp)
 Dcamp[is.na(Dcamp)] <- 0
 #now sum rows
-Dcamp$Dcamp_sum <-rowSums(Dcamp[,2:ncol(Dcamp)]) 
+Dcamp$Dcamp_sum <-Dcamp[,2] 
 #(Dcamp)
 Dcamp$DcampNorm <- Dcamp$Dcamp_sum/sort(Dcamp$Dcamp_sum,decreasing = TRUE)[[2]]
 ``` 
@@ -92,7 +92,7 @@ rollup <- cbind(one,two,twoHalf,three,four,five)
 rollup$grade <- rollup$HworkNorm*10 + rollup$QuizNorm*10 + rollup$DcampNorm*20 + rollup$WriteupNorm*30 + rollup$GitNorm*10 + rollup$FinalNorm*20
 rollup$grade2 <- rollup$HworkNorm*25 + rollup$DcampNorm*20 + rollup$WriteupNorm*25 + rollup$GitNorm*5 + rollup$FinalNorm*25
 print(rollup)[,c(1,7,8)]
-write.csv(rollup,file="PMGrades_CRN70837.csv",sep=",")
+write.csv(rollup,file="PMGrades_CRN73452.csv",sep=",")
 ```
   
 
