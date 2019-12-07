@@ -11,7 +11,7 @@ output:
 ```{r include=FALSE,echo=FALSE}
 require(tidyverse)
 require(tigerstats)
-alldata <- read.csv(file = "Grades-2019-73452-MATH115.csv")
+alldata <- read.csv(file = "Grades-2019-76143-MATH115.csv", sep=';')
 #names(alldata)
 ```
 
