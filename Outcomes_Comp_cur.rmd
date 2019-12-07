@@ -1,0 +1,27 @@
+---
+title: "Compute Canvas Outcomes"
+author: "Dr K"
+date: "Year 2019"
+output:
+  html_document:
+    df_print: paged
+  word_document: default
+---
+
+```{r include=FALSE,echo=FALSE}
+require(tidyverse)
+require(tigerstats)
+Outcom <- read.csv(file = "Outcomes-2019-73452-MATH115.csv")
+#names(alldata)
+```
+
+# Use dplyr to cut up the data and replace NA's with zero
+
+```{r}
+#canvas puts summary crap in download that ends in .Points and .Score so it gets removed with select(-ends_with) 
+Outcom <- select(Outcom,Student.name,contains("result")) %>% select(-ends_with(".Points"))%>% select(-ends_with(".Score"))
+Outcom[is.na(Outcom)] <- 0
+```
+
+
+
