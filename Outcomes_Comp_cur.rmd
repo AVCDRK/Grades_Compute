@@ -22,6 +22,8 @@ Outcom <- read.csv(file = "Outcomes-2019-73452-MATH115.csv")
 Outcom <- select(Outcom,Student.name,contains("result")) %>% select(-ends_with(".Points"))%>% select(-ends_with(".Score"))
 Outcom[is.na(Outcom)] <- 0
 ```
+##  score2 is highest of all except final 
+
 
 ```{r}
 Outcomm1 <- select(Outcom,-Student.name)
@@ -29,7 +31,11 @@ nrw = nrow(Outcomm1)
 for (i in 1:nrw){
 Outcom$score[i]=max(Outcomm1[i,])
 }
-Out <- select(Outcom,Student.name,score)
+Outcomm2 <- select(Outcom,-Student.name,-Final.result)
+for (i in 1:nrw){
+Outcom$score2[i]=max(Outcomm2[i,])
+}
+Out <- select(Outcom,Student.name,Final.result,score2)
 print(Out)
 ```
 
